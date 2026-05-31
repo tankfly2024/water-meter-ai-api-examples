@@ -1,0 +1,70 @@
+openapi: 3.0.3
+info:
+  title: Water Meter Open API
+  version: "1.0"
+  description: Public API surface used by the example clients.
+servers:
+  - url: https://meter.smartwebpark.com
+security:
+  - bearerAuth: []
+paths:
+  /api/open/ai-status:
+    get:
+      summary: Get public AI status
+      responses:
+        "200":
+          description: Public status
+  /api/open/quota:
+    get:
+      summary: Get current quota
+      responses:
+        "200":
+          description: Quota summary
+  /api/open/tasks:
+    post:
+      summary: Create one recognition task
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [file]
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Created task
+    get:
+      summary: List recent tasks
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 200
+      responses:
+        "200":
+          description: Recent tasks
+  /api/open/tasks/{task_id}:
+    get:
+      summary: Get task status and result
+      parameters:
+        - name: task_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Task status and result
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API key

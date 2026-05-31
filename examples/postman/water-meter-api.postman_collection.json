@@ -1,0 +1,49 @@
+{
+  "info": {
+    "name": "Water Meter API Examples",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "api_base", "value": "https://meter.smartwebpark.com" },
+    { "key": "api_key", "value": "wm_xxxxxxxxxxxxxxxxx" },
+    { "key": "task_id", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "AI Status",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{api_key}}" }],
+        "url": "{{api_base}}/api/open/ai-status"
+      }
+    },
+    {
+      "name": "Quota",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{api_key}}" }],
+        "url": "{{api_base}}/api/open/quota"
+      }
+    },
+    {
+      "name": "Create Task",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Authorization", "value": "Bearer {{api_key}}" }],
+        "body": {
+          "mode": "formdata",
+          "formdata": [{ "key": "file", "type": "file", "src": "" }]
+        },
+        "url": "{{api_base}}/api/open/tasks"
+      }
+    },
+    {
+      "name": "Get Task",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{api_key}}" }],
+        "url": "{{api_base}}/api/open/tasks/{{task_id}}"
+      }
+    }
+  ]
+}
