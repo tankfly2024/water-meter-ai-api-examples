@@ -28,6 +28,8 @@ Data defaults to `.watermeter-image-to-csv` in your user directory. Use `--data-
 
 The application uses the public quota, task submission, and task polling endpoints. API usage follows the account's current server-side quota and service terms. Demo illustrations and saved values are explicitly labeled and are never submitted for live recognition.
 
+Ordinary free accounts receive **20 recognitions per day**, shared with the website. The allowance resets each server-side calendar day (normally Asia/Shanghai); unused calls do not roll over. Account-specific, paid, and cooperation quotas follow the server response. The client shows the actual daily limit, used calls, and remaining calls, and refreshes quota after processing. Status polling and the offline demo do not consume recognition allowance.
+
 CSV retains original AI readings separately from user-confirmed values, including leading zeros and decimals. Import reading columns as Text in spreadsheet software to prevent automatic numeric conversion. Failed and unreadable rows remain in the export.
 
 Pause/resume reuses existing task IDs. Uncertain submission responses are never automatically retried: check the account's task history before resubmitting. Images imported after a run starts wait for the next manual run.

@@ -172,6 +172,7 @@ class ReviewStore:
         response = api.request("/api/open/quota")
         with self.lock:
             self.key, self.quota = key, response.get("quota", {})
+            self.message = ""
 
     def review(self, identifier, value, reviewed, note):
         if value and not re.fullmatch(r"\d+(?:\.\d+)?", value):
@@ -203,12 +204,14 @@ class ReviewStore:
                 raise ValueError("Connect an API key before processing your own images.")
             PublicApi(self.api_base, self.key)
             self.active = True
+            self.message = ""
             self.stop.clear()
             self.worker = threading.Thread(target=self.process, args=(list(self.rows),), daemon=True)
             self.worker.start()
 
     def process(self, rows):
         api = PublicApi(self.api_base, self.key)
+        completed = False
         try:
             for row in rows:
                 if self.stop.is_set():
@@ -233,6 +236,7 @@ class ReviewStore:
                         status = payload.get("status")
                         row.update(status=status if status in {"queued", "running", "waiting_ai"} else "running", error="")
                         if status in {"done", "failed", "canceled"}:
+                            completed = True
                             reading = final_reading(payload) if status == "done" else ""
                             row.update(ai_reading=reading, status="accepted" if reading else ("unreadable" if status == "done" else "failed"),
                                        error="" if reading else "No accepted reading returned; review the image.", result_source=str(payload.get("result_source", "")))
@@ -253,6 +257,13 @@ class ReviewStore:
                     self.save()
                     break
         finally:
+            if completed and not self.stop.is_set():
+                try:
+                    response = api.request("/api/open/quota")
+                    with self.lock:
+                        self.quota = response.get("quota", {})
+                except ApiError:
+                    self.message = "Readings saved; reconnect to refresh the account quota."
             with self.lock:
                 self.active = False
 

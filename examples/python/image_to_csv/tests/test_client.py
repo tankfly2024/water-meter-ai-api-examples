@@ -38,7 +38,8 @@ class FakeApi(BaseHTTPRequestHandler):
         if self.path.endswith("quota"):
             if self.headers.get("Authorization") != "Bearer test-key":
                 return self.send(401, {})
-            return self.send(200, {"quota": {"remaining": 99, "quota_summary_text": "Test quota: 99"}})
+            used = 3 + self.server.posts
+            return self.send(200, {"quota": {"account_type": "free", "daily_limit": 20, "used": used, "remaining": 20-used}})
         if self.server.mode == "waiting":
             return self.send(200, {"status": "waiting_ai"})
         if self.server.mode == "rate" and not self.server.rate_sent:
@@ -115,6 +116,7 @@ class ClientTests(unittest.TestCase):
         self.assertEqual(exported[0]["selected_reading"], "00123.451")
         self.assertEqual(exported[0]["reviewed"], "yes")
         self.assertEqual(self.fake.posts, 1)
+        self.assertEqual(self.store.snapshot()["quota"], {"account_type": "free", "daily_limit": 20, "used": 4, "remaining": 16})
         self.assertNotIn("test-key", self.store.path.read_text())
         self.assertNotIn("test-key", json.dumps(self.store.snapshot()))
 
