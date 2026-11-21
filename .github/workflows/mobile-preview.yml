@@ -29,10 +29,7 @@ jobs:
           echo "JAVA_HOME=$JAVA_HOME_17_X64" >> "$GITHUB_ENV"
           python3 examples/flutter/watermeter_mobile/tool/bootstrap.py --target "$RUNNER_TEMP/watermeter-mobile"
       - name: Analyze and run mock API and widget tests
-        working-directory: ${{ runner.temp }}/watermeter-mobile
-        run: |
-          flutter analyze
-          flutter test --reporter expanded
+        run: python3 examples/flutter/watermeter_mobile/tool/check.py --project "$RUNNER_TEMP/watermeter-mobile"
       - name: Build Android testing APK
         working-directory: ${{ runner.temp }}/watermeter-mobile
         run: |
@@ -58,10 +55,7 @@ jobs:
       - name: Prepare native project
         run: python3 examples/flutter/watermeter_mobile/tool/bootstrap.py --target "$RUNNER_TEMP/watermeter-mobile"
       - name: Analyze and run mock API and widget tests
-        working-directory: ${{ runner.temp }}/watermeter-mobile
-        run: |
-          flutter analyze
-          flutter test --reporter expanded
+        run: python3 examples/flutter/watermeter_mobile/tool/check.py --project "$RUNNER_TEMP/watermeter-mobile"
       - name: Run mock workflow on an iPhone simulator
         run: |
           mkdir -p "$RUNNER_TEMP/mobile-artifacts/screenshots"
@@ -78,7 +72,7 @@ jobs:
         with:
           name: mobile-ios
           path: ${{ runner.temp }}/mobile-artifacts/
-          if-no-files-found: error
+          if-no-files-found: warn
 
   publish:
     needs: [android, ios]

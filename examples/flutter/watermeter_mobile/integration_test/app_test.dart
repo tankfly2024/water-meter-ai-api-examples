@@ -22,18 +22,18 @@ void main() {
     final png = base64Decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=');
     await tester.pumpWidget(WaterMeterApp(controller: c, photoPicker: (_) async => png, linkOpener: (_) async {}));
     Future<void> tap(String key) async {
-      await tester.scrollUntilVisible(find.byKey(Key(key)), 180);
+      await tester.scrollUntilVisible(find.byKey(Key(key)), 180, scrollable: find.byType(Scrollable).first);
       await tester.tap(find.byKey(Key(key))); await tester.pumpAndSettle();
     }
     await tap('demo');
     await binding.takeScreenshot('demo-en');
     await tester.tap(find.byKey(const Key('language'))); await tester.pumpAndSettle();
     await binding.takeScreenshot('demo-zh');
-    await tester.scrollUntilVisible(find.byKey(const Key('api-key')), -180);
+    await tester.scrollUntilVisible(find.byKey(const Key('api-key')), -180, scrollable: find.byType(Scrollable).first);
     await tester.enterText(find.byKey(const Key('api-key')), 'fixture-key'); await tap('connect');
     await tap('gallery'); await tap('recognize');
     expect(posts, 1); expect(c.session.aiReading, '00123.45');
-    await tester.scrollUntilVisible(find.byKey(const Key('review-input')), 180);
+    await tester.scrollUntilVisible(find.byKey(const Key('review-input')), 180, scrollable: find.byType(Scrollable).first);
     await tester.enterText(find.byKey(const Key('review-input')), '00123.46'); await tap('confirm');
     expect(c.session.confirmedReading, '00123.46'); expect(c.session.aiReading, '00123.45');
     expect(jsonEncode(store.value), isNot(contains('fixture-key')));
