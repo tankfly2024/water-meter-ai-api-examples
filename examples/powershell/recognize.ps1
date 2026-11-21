@@ -21,7 +21,7 @@ function Import-DotEnv($Path) {
 
 Import-DotEnv (Join-Path $RootDir ".env")
 
-$ApiBase = if ($env:WATERMETER_API_BASE) { $env:WATERMETER_API_BASE.TrimEnd("/") } else { "https://meter.smartwebpark.com" }
+$ApiBase = if ($env:WATERMETER_API_BASE) { $env:WATERMETER_API_BASE.TrimEnd("/") } else { "https://watermeterai.com" }
 $ApiKey = $env:WATERMETER_API_KEY
 $ImagePath = if ($env:IMAGE_PATH) { $env:IMAGE_PATH } else { Join-Path $RootDir "sample-images\example.jpg" }
 if (-not [System.IO.Path]::IsPathRooted($ImagePath)) {

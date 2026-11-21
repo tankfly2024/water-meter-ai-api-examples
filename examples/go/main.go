@@ -15,7 +15,7 @@ import (
 func main() {
 	rootDir, _ := filepath.Abs("../..")
 	loadDotenv(filepath.Join(rootDir, ".env"))
-	apiBase := getenv("WATERMETER_API_BASE", "https://meter.smartwebpark.com")
+	apiBase := getenv("WATERMETER_API_BASE", "https://watermeterai.com")
 	apiKey := getenv("WATERMETER_API_KEY", "")
 	imagePath := getenv("IMAGE_PATH", filepath.Join(rootDir, "sample-images", "example.jpg"))
 	if !filepath.IsAbs(imagePath) {

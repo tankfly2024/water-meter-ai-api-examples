@@ -11,7 +11,7 @@ if [[ -f "${ENV_FILE}" ]]; then
   set +a
 fi
 
-API_BASE="${WATERMETER_API_BASE:-https://meter.smartwebpark.com}"
+API_BASE="${WATERMETER_API_BASE:-https://watermeterai.com}"
 API_KEY="${WATERMETER_API_KEY:-}"
 IMAGE_PATH="${IMAGE_PATH:-${ROOT_DIR}/sample-images/example.jpg}"
 if [[ "${IMAGE_PATH}" != /* && ! "${IMAGE_PATH}" =~ ^[A-Za-z]:[\\/].* ]]; then

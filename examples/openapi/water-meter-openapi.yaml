@@ -4,7 +4,7 @@ info:
   version: "1.0"
   description: Public API surface used by the example clients.
 servers:
-  - url: https://meter.smartwebpark.com
+  - url: https://watermeterai.com
 security:
   - bearerAuth: []
 paths:

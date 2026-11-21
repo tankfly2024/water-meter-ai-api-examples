@@ -3,7 +3,7 @@ using System.Text.Json;
 
 var rootDir = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", ".."));
 LoadDotEnv(Path.Combine(rootDir, ".env"));
-var apiBase = (Environment.GetEnvironmentVariable("WATERMETER_API_BASE") ?? "https://meter.smartwebpark.com").TrimEnd('/');
+var apiBase = (Environment.GetEnvironmentVariable("WATERMETER_API_BASE") ?? "https://watermeterai.com").TrimEnd('/');
 var apiKey = Environment.GetEnvironmentVariable("WATERMETER_API_KEY") ?? "";
 var imagePath = Environment.GetEnvironmentVariable("IMAGE_PATH") ?? Path.Combine(rootDir, "sample-images", "example.jpg");
 if (!Path.IsPathRooted(imagePath))

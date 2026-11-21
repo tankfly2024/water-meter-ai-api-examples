@@ -2,7 +2,7 @@
 
 $rootDir = realpath(__DIR__ . "/../..");
 loadDotenv($rootDir . "/.env");
-$apiBase = rtrim(getenv("WATERMETER_API_BASE") ?: "https://meter.smartwebpark.com", "/");
+$apiBase = rtrim(getenv("WATERMETER_API_BASE") ?: "https://watermeterai.com", "/");
 $apiKey = getenv("WATERMETER_API_KEY") ?: "";
 $imagePath = getenv("IMAGE_PATH") ?: $rootDir . "/sample-images/example.jpg";
 if (!preg_match('/^([A-Za-z]:[\/\\\\]|\/)/', $imagePath)) {

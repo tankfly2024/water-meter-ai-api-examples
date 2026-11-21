@@ -9,7 +9,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, "../..");
 dotenv.config({ path: path.join(rootDir, ".env") });
 
-const apiBase = (process.env.WATERMETER_API_BASE || "https://meter.smartwebpark.com").replace(/\/$/, "");
+const apiBase = (process.env.WATERMETER_API_BASE || "https://watermeterai.com").replace(/\/$/, "");
 const apiKey = process.env.WATERMETER_API_KEY || "";
 const rawImagePath = process.env.IMAGE_PATH || path.join(rootDir, "sample-images", "example.jpg");
 const imagePath = path.isAbsolute(rawImagePath) ? rawImagePath : path.join(rootDir, rawImagePath);

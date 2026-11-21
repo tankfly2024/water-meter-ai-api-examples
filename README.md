@@ -2,9 +2,9 @@
 
 Official example clients for the Water Meter Recognition API using curl, Python, Node.js, Java, .NET, Go, PHP, and PowerShell.
 
-- Website: https://meter.smartwebpark.com/
-- API documentation: https://meter.smartwebpark.com/en/api-docs
-- API Keys: https://meter.smartwebpark.com/en/api-keys
+- Website: https://watermeterai.com/
+- API documentation: https://watermeterai.com/en/api-docs
+- API Keys: https://watermeterai.com/en/api-keys
 
 Use this repository to test image upload, task polling, quota checks, and public AI status checks from your own application.
 
@@ -16,12 +16,12 @@ This repository contains only public API client examples. It does not include AI
 
 ## Quick Start
 
-1. Sign in at https://meter.smartwebpark.com/
-2. Create an API key at https://meter.smartwebpark.com/en/api-keys
+1. Sign in at https://watermeterai.com/
+2. Create an API key at https://watermeterai.com/en/api-keys
 3. Copy `.env.example` to `.env` and set:
 
 ```text
-WATERMETER_API_BASE=https://meter.smartwebpark.com
+WATERMETER_API_BASE=https://watermeterai.com
 WATERMETER_API_KEY=wm_xxxxxxxxxxxxxxxxx
 IMAGE_PATH=./sample-images/example.jpg
 ```

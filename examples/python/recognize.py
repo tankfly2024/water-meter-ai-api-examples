@@ -23,7 +23,7 @@ def load_dotenv() -> None:
 
 load_dotenv()
 
-API_BASE = os.getenv("WATERMETER_API_BASE", "https://meter.smartwebpark.com").rstrip("/")
+API_BASE = os.getenv("WATERMETER_API_BASE", "https://watermeterai.com").rstrip("/")
 API_KEY = os.getenv("WATERMETER_API_KEY", "")
 IMAGE_PATH = Path(os.getenv("IMAGE_PATH", str(ROOT_DIR / "sample-images" / "example.jpg")))
 if not IMAGE_PATH.is_absolute():

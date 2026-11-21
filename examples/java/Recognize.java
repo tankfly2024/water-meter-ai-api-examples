@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 public class Recognize {
     private static final Path ROOT_DIR = Path.of("../..").toAbsolutePath().normalize();
     private static final Map<String, String> DOTENV = loadDotenv(ROOT_DIR.resolve(".env"));
-    private static final String API_BASE = getenv("WATERMETER_API_BASE", "https://meter.smartwebpark.com").replaceAll("/$", "");
+    private static final String API_BASE = getenv("WATERMETER_API_BASE", "https://watermeterai.com").replaceAll("/$", "");
     private static final String API_KEY = getenv("WATERMETER_API_KEY", "");
     private static final Path IMAGE_PATH = resolveImagePath(getenv("IMAGE_PATH", ROOT_DIR.resolve("sample-images/example.jpg").toString()));
     private static final long POLL_INTERVAL_MS = Long.parseLong(getenv("POLL_INTERVAL_SECONDS", "2")) * 1000L;

@@ -4,7 +4,7 @@
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
-    { "key": "api_base", "value": "https://meter.smartwebpark.com" },
+    { "key": "api_base", "value": "https://watermeterai.com" },
     { "key": "api_key", "value": "wm_xxxxxxxxxxxxxxxxx" },
     { "key": "task_id", "value": "" }
   ],
