@@ -1,6 +1,6 @@
 import 'dart:math' as math;
 import 'dart:typed_data';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'api.dart';
@@ -126,6 +126,9 @@ class _WaterMeterAppState extends State<WaterMeterApp> with WidgetsBindingObserv
   @override
   Widget build(BuildContext context) => MaterialApp(
     title: 'WaterMeter Mobile', debugShowCheckedModeBanner: false,
+    locale: Locale(chinese ? 'zh' : 'en'),
+    supportedLocales: const [Locale('en'), Locale('zh')],
+    localizationsDelegates: GlobalMaterialLocalizations.delegates,
     theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff087f8c)),
       scaffoldBackgroundColor: const Color(0xffedf4f5),
       inputDecorationTheme: const InputDecorationTheme(border: OutlineInputBorder())),

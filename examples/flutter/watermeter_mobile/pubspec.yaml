@@ -3,10 +3,11 @@ description: WaterMeter AI camera and photo recognition client testing preview.
 publish_to: none
 version: 0.1.0+1
 environment:
-  sdk: '>=3.11.0 <4.0.0'
+  sdk: '>=3.13.0 <4.0.0'
 dependencies:
   flutter:
     sdk: flutter
+  material_ui: 1.11.1
   http: 1.6.0
   image_picker: 1.2.4
   url_launcher: 6.3.3

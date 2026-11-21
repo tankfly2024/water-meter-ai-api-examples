@@ -24,6 +24,10 @@ jobs:
           persist-credentials: false
       - name: Install Flutter only on this cloud runner
         run: python3 examples/flutter/watermeter_mobile/tool/install_flutter.py
+      - name: Compile existing Java public API example
+        run: |
+          mkdir -p "$RUNNER_TEMP/java-example"
+          javac --release 11 -d "$RUNNER_TEMP/java-example" examples/java/Recognize.java
       - name: Prepare native project
         run: |
           echo "JAVA_HOME=$JAVA_HOME_17_X64" >> "$GITHUB_ENV"
