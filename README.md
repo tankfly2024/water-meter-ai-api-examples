@@ -14,9 +14,9 @@ This public GitHub repository is for Water Meter API examples and website discov
 
 This repository contains only public API client examples. It does not include AI service code, dispatch code, backend source code, models, private endpoints, deployment details, or internal architecture.
 
-## Photo-to-CSV Client Project
+## Image-to-CSV Client Project
 
-The [WaterMeter Photo-to-CSV client project](examples/python/photo_to_csv/README.md) will provide a photo review and CSV export workflow using the public API. Its project directory and documentation have been initialized; a runnable application is not available yet.
+The [WaterMeter Image-to-CSV client project](examples/python/image_to_csv/README.md) will provide an image review and CSV export workflow using the public API. Its project directory and documentation have been initialized; a runnable application is not available yet.
 
 ## Quick Start
 

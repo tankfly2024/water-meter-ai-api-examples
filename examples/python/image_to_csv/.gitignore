@@ -16,7 +16,7 @@ exports/
 results/
 logs/
 
-# Private photos, tables, and local databases
+# Private images, tables, and local databases
 *.[jJ][pP][gG]
 *.[jJ][pP][eE][gG]
 *.[pP][nN][gG]
