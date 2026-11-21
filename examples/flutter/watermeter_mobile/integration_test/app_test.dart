@@ -14,7 +14,16 @@ import 'package:watermeter_mobile/main.dart';
 import 'package:watermeter_mobile/session.dart';
 
 void main() {
-  IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+  final binding = IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+  tearDownAll(() async {
+    final directory = await getTemporaryDirectory();
+    final passed = binding.results.length == 1 && binding.failureMethodsDetails.isEmpty &&
+      binding.results.values.every((value) => value == 'success');
+    await File('${directory.path}/watermeter-native-check.json').writeAsString(jsonEncode({
+      'passed': passed, 'tests': binding.results.keys.toList(),
+      'failures': binding.failureMethodsDetails.map((failure) => failure.details).toList(),
+    }), flush: true);
+  });
   testWidgets('simulator demo and mock recognition workflow', (tester) async {
     final store = MemorySessionStore(); var posts = 0;
     final c = MeterController(store, pollInterval: Duration.zero, apiFactory: (key) => MeterApi(key,
