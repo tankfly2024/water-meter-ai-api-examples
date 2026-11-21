@@ -16,7 +16,7 @@ This repository contains only public API client examples. It does not include AI
 
 ## Image-to-CSV Client Project
 
-The [WaterMeter Image-to-CSV client project](examples/python/image_to_csv/README.md) will provide an image review and CSV export workflow using the public API. Its project directory and documentation have been initialized; a runnable application is not available yet.
+The [WaterMeter Image-to-CSV client](examples/python/image_to_csv/README.md) provides a local browser interface for image import, API recognition, manual review, and CSV export. An offline demo works without an API key. The local prototype has automated mock-API workflow tests; its production recognition integration is still awaiting verification.
 
 ## Quick Start
 
