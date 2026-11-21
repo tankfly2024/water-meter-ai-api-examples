@@ -37,7 +37,7 @@ jobs:
       - name: Build Android testing APK
         working-directory: ${{ runner.temp }}/watermeter-mobile
         run: |
-          flutter build apk --debug
+          python3 "$GITHUB_WORKSPACE/examples/flutter/watermeter_mobile/tool/check.py" --project "$RUNNER_TEMP/watermeter-mobile" --run flutter build apk --debug
           mkdir -p "$RUNNER_TEMP/mobile-artifacts"
           cp build/app/outputs/flutter-apk/app-debug.apk "$RUNNER_TEMP/mobile-artifacts/watermeter-mobile-android-debug.apk"
           flutter --version --machine > "$RUNNER_TEMP/mobile-artifacts/flutter-build.json"
@@ -63,13 +63,13 @@ jobs:
       - name: Run mock workflow on an iPhone simulator
         run: |
           mkdir -p "$RUNNER_TEMP/mobile-artifacts/screenshots"
-          python3 examples/flutter/watermeter_mobile/tool/run_simulator.py --project "$RUNNER_TEMP/watermeter-mobile"
+          python3 examples/flutter/watermeter_mobile/tool/check.py --project "$RUNNER_TEMP/watermeter-mobile" --run python3 "$GITHUB_WORKSPACE/examples/flutter/watermeter_mobile/tool/run_simulator.py" --project "$RUNNER_TEMP/watermeter-mobile"
         env:
           WM_SCREENSHOT_DIR: ${{ runner.temp }}/mobile-artifacts/screenshots
       - name: Build unsigned iOS simulator app and full source bundle
         working-directory: ${{ runner.temp }}/watermeter-mobile
         run: |
-          flutter build ios --simulator --debug
+          python3 "$GITHUB_WORKSPACE/examples/flutter/watermeter_mobile/tool/check.py" --project "$RUNNER_TEMP/watermeter-mobile" --run flutter build ios --simulator --debug
           python3 "$GITHUB_WORKSPACE/examples/flutter/watermeter_mobile/tool/publish.py" --build-only --project "$RUNNER_TEMP/watermeter-mobile" --output "$RUNNER_TEMP/mobile-artifacts"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()

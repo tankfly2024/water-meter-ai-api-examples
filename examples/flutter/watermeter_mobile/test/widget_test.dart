@@ -13,11 +13,16 @@ void main() {
     expect(find.text('Free account: 20 recognitions per day'), findsOneWidget);
     await tester.tap(find.byKey(const Key('free-key'))); await tester.pumpAndSettle();
     expect(links.single.toString(), 'https://watermeterai.com/en/api-keys');
-    await tester.scrollUntilVisible(find.byKey(const Key('demo')), 200, scrollable: find.byType(Scrollable).first); await tester.tap(find.byKey(const Key('demo')));
+    await tester.scrollUntilVisible(find.byKey(const Key('demo')), 200, scrollable: find.byType(Scrollable).first);
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(find.byKey(const Key('demo'))); await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('demo')));
     await tester.pumpAndSettle(); expect(c.session.demo, isTrue);
     await tester.scrollUntilVisible(find.byKey(const Key('review-input')), 200, scrollable: find.byType(Scrollable).first);
+    await tester.pumpAndSettle();
     await tester.enterText(find.byKey(const Key('review-input')), '00123.46');
-    await tester.ensureVisible(find.byKey(const Key('confirm'))); await tester.tap(find.byKey(const Key('confirm'))); await tester.pumpAndSettle();
+    await tester.ensureVisible(find.byKey(const Key('confirm'))); await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('confirm'))); await tester.pumpAndSettle();
     expect(c.session.confirmedReading, '00123.46');
     await tester.tap(find.byKey(const Key('language'))); await tester.pumpAndSettle();
     expect(find.text('WaterMeter 水表识别'), findsOneWidget);
