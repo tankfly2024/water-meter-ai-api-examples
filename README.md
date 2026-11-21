@@ -8,7 +8,7 @@ Official example clients for the Water Meter Recognition API using curl, Python,
 
 **中文：欢迎访问[水表识别官网 watermeterai.com](https://watermeterai.com/zh-cn)。在官网[免费注册](https://watermeterai.com/zh-cn/login?flow=register)并登录，即可[免费创建API Key](https://watermeterai.com/zh-cn/api-keys)。普通免费账号每天可识别20次，官网与所有API工具共用额度，未用完不累积；特殊账号按实际额度执行。**
 
-The two tools below are **testing previews**. [Download the preview packages and read the release notes](https://github.com/tankfly2024/water-meter-ai-api-examples/releases/tag/preview-20261121-r1). Real Home Assistant and production API end-to-end verification are pending.
+The clients below are **testing previews**. [Download Image-to-CSV and Home Assistant packages](https://github.com/tankfly2024/water-meter-ai-api-examples/releases/tag/preview-20261121-r1), or see the mobile app section for Android/iOS builds. Real Home Assistant, physical phones, and production API end-to-end verification are pending.
 
 - Website: https://watermeterai.com/
 - API documentation: https://watermeterai.com/en/api-docs
@@ -32,7 +32,11 @@ For a camera-to-sensor workflow, try the [WaterMeter AI Home Assistant custom in
 
 ## Mobile App Preview
 
-The [WaterMeter Mobile project](examples/flutter/watermeter_mobile/README.md) adds a shared Android/iOS photo-and-review interface with prominent website and free-API-key links. The [cloud build workflow](.github/workflows/mobile-preview.yml) checks the source, builds a testing APK and an unsigned iPhone simulator app, and runs a mocked simulator workflow. Physical-device and production API validation remain separate from these build checks. Download successful **WaterMeter Mobile** previews from [Releases](https://github.com/tankfly2024/water-meter-ai-api-examples/releases).
+The [WaterMeter Mobile project](examples/flutter/watermeter_mobile/README.md) provides Android/iOS photo capture and reading review, with prominent website and free API key links. [Download the Android testing APK, iPhone simulator app, and complete source](https://github.com/tankfly2024/water-meter-ai-api-examples/releases/tag/mobile-preview-20261121-6475f37). Both platform builds, 19 automated app tests per platform, and a mocked iPhone simulator workflow passed in the [cloud build](https://github.com/tankfly2024/water-meter-ai-api-examples/actions/runs/44896315554). Physical phones and production API recognition still require separate verification. The iOS package is for a Mac simulator; it cannot be installed directly on an iPhone.
+
+Actual simulator UI below: **offline DEMO with an illustration and preset reading**, without a production recognition call. [Chinese screenshot](https://github.com/tankfly2024/water-meter-ai-api-examples/releases/download/mobile-preview-20261121-6475f37/demo-zh.png).
+
+<img src="https://github.com/tankfly2024/water-meter-ai-api-examples/releases/download/mobile-preview-20261121-6475f37/demo-en.png" width="300" alt="WaterMeter Mobile running in an iPhone simulator with an explicitly marked offline DEMO">
 
 ## Quick Start
 
