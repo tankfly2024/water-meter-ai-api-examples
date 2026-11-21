@@ -1,0 +1,24 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "连接 WaterMeter AI",
+        "description": "选择已有的水表摄像头。按“识别水表”或自行配置自动化时，才会将图片提交云端。普通免费账号每天20次，与官网共用；特殊账号以实际额度为准。",
+        "data": {"api_key": "API Key", "camera_entity_id": "水表摄像头", "unit_of_measurement": "API读数所代表的单位", "max_increase": "允许自动接受的最大增量（所选单位）"},
+        "data_description": {"unit_of_measurement": "按返回读数的真实含义选择单位，插件不会自动推断或换算。", "max_increase": "首次读数和较大的正向变化需人工确认，倒退读数保留复核。"}
+      },
+      "reauth_confirm": {"title": "更新API Key", "description": "保留已有读数和待查询任务。", "data": {"api_key": "新的API Key"}}
+    },
+    "error": {"cannot_connect": "无法连接公开API，或账号没有查询额度的权限。", "invalid_auth": "API Key无效、已过期或无法查询额度。"},
+    "abort": {"already_configured": "该摄像头已添加WaterMeter AI集成。", "reauth_successful": "API Key已更新。"}
+  },
+  "entity": {
+    "sensor": {
+      "total": {"name": "水表累计读数"},
+      "candidate": {"name": "待确认读数"},
+      "daily_remaining": {"name": "今日剩余免费识别次数"},
+      "status": {"name": "识别状态", "state": {"idle": "尚未识别", "submitting": "正在提交", "submission_unknown": "请核查官网任务历史", "queued": "排队中", "running": "识别中", "waiting_ai": "等待AI服务", "pending": "点击识别水表继续查询", "review_required": "请确认待确认读数", "accepted": "读数已接受", "backwards": "倒退读数已拦截", "unreadable": "未返回有效读数", "error": "API或任务异常"}}
+    },
+    "button": {"read_meter": {"name": "识别水表"}, "confirm_reading": {"name": "确认待确认读数"}, "discard_reading": {"name": "丢弃待确认读数"}}
+  }
+}

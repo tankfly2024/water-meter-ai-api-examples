@@ -1,0 +1,13 @@
+{
+  "domain": "watermeter_ai",
+  "name": "WaterMeter AI",
+  "codeowners": ["@tankfly2024"],
+  "config_flow": true,
+  "dependencies": ["camera"],
+  "documentation": "https://github.com/tankfly2024/water-meter-ai-api-examples/tree/main/examples/home_assistant",
+  "integration_type": "device",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/tankfly2024/water-meter-ai-api-examples/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}

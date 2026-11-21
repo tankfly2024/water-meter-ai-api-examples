@@ -1,0 +1,24 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect WaterMeter AI",
+        "description": "Select your existing meter camera. Photos are sent to the cloud only when you press Read meter or create your own automation. Ordinary free accounts share 20 recognitions per day with the website; account-specific quotas apply.",
+        "data": {"api_key": "API key", "camera_entity_id": "Meter camera", "unit_of_measurement": "Unit of the API reading", "max_increase": "Maximum automatic increase in the selected unit"},
+        "data_description": {"unit_of_measurement": "Choose the unit represented by your meter's returned reading. This integration does not infer or convert it.", "max_increase": "First readings and larger forward changes require manual confirmation. Backwards readings are held."}
+      },
+      "reauth_confirm": {"title": "Update your API key", "description": "Existing meter readings and pending tasks are retained.", "data": {"api_key": "New API key"}}
+    },
+    "error": {"cannot_connect": "Cannot reach the public API or quota access was denied.", "invalid_auth": "The API key is invalid, expired, or cannot read quota."},
+    "abort": {"already_configured": "This camera already has a WaterMeter AI entry.", "reauth_successful": "API key updated."}
+  },
+  "entity": {
+    "sensor": {
+      "total": {"name": "Water meter total"},
+      "candidate": {"name": "Pending meter reading"},
+      "daily_remaining": {"name": "Free recognitions remaining today"},
+      "status": {"name": "Recognition status", "state": {"idle": "Not read yet", "submitting": "Submitting", "submission_unknown": "Check website task history", "queued": "Queued", "running": "Recognizing", "waiting_ai": "Waiting for AI", "pending": "Press Read meter to resume", "review_required": "Confirm pending reading", "accepted": "Reading accepted", "backwards": "Backwards reading held", "unreadable": "No accepted reading", "error": "API or task error"}}
+    },
+    "button": {"read_meter": {"name": "Read meter"}, "confirm_reading": {"name": "Confirm pending reading"}, "discard_reading": {"name": "Discard pending reading"}}
+  }
+}

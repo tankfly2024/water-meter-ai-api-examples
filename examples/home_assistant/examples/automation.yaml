@@ -1,0 +1,13 @@
+# Example only: replace the button entity ID after adding the integration.
+# Two reads per day. This is not installed or enabled automatically.
+alias: Read water meter twice daily
+triggers:
+  - trigger: time
+    at: "06:00:00"
+  - trigger: time
+    at: "18:00:00"
+actions:
+  - action: button.press
+    target:
+      entity_id: button.replace_with_your_watermeter_read_meter
+mode: single

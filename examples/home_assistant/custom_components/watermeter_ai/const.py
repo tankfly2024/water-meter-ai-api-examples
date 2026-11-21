@@ -1,0 +1,7 @@
+"""Constants for the WaterMeter AI custom integration."""
+DOMAIN = "watermeter_ai"
+CONF_CAMERA = "camera_entity_id"
+CONF_UNIT = "unit_of_measurement"
+CONF_MAX_INCREASE = "max_increase"
+API_BASE = "https://watermeterai.com"
+VERSION = "0.1.0"

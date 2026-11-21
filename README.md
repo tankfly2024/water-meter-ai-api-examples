@@ -18,6 +18,10 @@ This repository contains only public API client examples. It does not include AI
 
 The [WaterMeter Image-to-CSV client](examples/python/image_to_csv/README.md) provides a local browser interface for image import, API recognition, manual review, and CSV export. An offline demo works without an API key. The local prototype has automated mock-API workflow tests; its production recognition integration is still awaiting verification.
 
+## Home Assistant Integration
+
+For a camera-to-sensor workflow, try the [WaterMeter AI Home Assistant custom integration](examples/home_assistant/README.md). Its local prototype supports manual reads, cumulative values, review controls, and quota reporting. Real Home Assistant installation and production API verification are pending; manual installation instructions and an optional automation example are included.
+
 ## Quick Start
 
 1. Sign in at https://watermeterai.com/
