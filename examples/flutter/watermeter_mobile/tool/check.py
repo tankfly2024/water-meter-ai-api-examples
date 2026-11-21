@@ -19,7 +19,7 @@ if __name__ == "__main__":
         for name, value in os.environ.items():
             if re.search(r"TOKEN|SECRET|PASSWORD", name, re.I) and len(value) >= 8:
                 content = content.replace(value, "[REDACTED]")
-        content = re.sub(r"(https?://(?:127\.0\.0\.1|localhost):\d+/)[A-Za-z0-9_-]+=/?", r"\1[VM_AUTH]/", content)
+        content = re.sub(r"((?:https?|wss?)://(?:127\.0\.0\.1|localhost):\d+/)[A-Za-z0-9_-]+=/?", r"\1[VM_AUTH]/", content)
         print(content, flush=True)
         if result.returncode:
             output = re.sub(r"\x1b\[[0-9;]*[A-Za-z]", "", content[-12000:])
