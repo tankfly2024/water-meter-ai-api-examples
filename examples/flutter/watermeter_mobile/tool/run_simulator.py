@@ -4,6 +4,7 @@ import json
 import os
 from pathlib import Path
 import plistlib
+import re
 import shutil
 import subprocess
 
@@ -13,11 +14,17 @@ if __name__ == "__main__":
     parser.add_argument("--project", required=True, type=Path)
     project = parser.parse_args().project.resolve()
     devices = json.loads(subprocess.check_output(["xcrun", "simctl", "list", "devices", "available", "-j"]))
-    candidates = [device for runtime, group in devices["devices"].items() if "iOS" in runtime
+    candidates = [dict(device, runtime=runtime) for runtime, group in devices["devices"].items() if "iOS" in runtime
                   for device in group if device.get("isAvailable") and "iPhone" in device["name"]]
     if not candidates:
         raise SystemExit("No iPhone simulator available; do not mark the native run as tested")
+    # The hosted macOS 26 image stalled in CoreLocation data migration before
+    # launching our app. Prefer the installed iOS 18 runtime on macOS 15.
+    stable = [device for device in candidates if "iOS-18-" in device["runtime"]]
+    candidates = sorted(stable or candidates, key=lambda item: tuple(
+        int(part) for part in re.findall(r"\d+", item["runtime"])), reverse=True)
     device = next((device for device in candidates if device["state"] == "Booted"), candidates[0])
+    print("Simulator: " + device["name"] + " / " + device["runtime"], flush=True)
     if device["state"] != "Booted":
         subprocess.run(["xcrun", "simctl", "boot", device["udid"]], check=True)
     subprocess.run(["xcrun", "simctl", "bootstatus", device["udid"], "-b"], check=True, timeout=300)
