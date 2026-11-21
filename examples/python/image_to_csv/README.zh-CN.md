@@ -4,6 +4,8 @@
 
 这是水表项目下的客户端子项目，目标是把一张或一批水表图片整理为可人工核对、修改并导出的读数表，通过 WaterMeter AI 公开 API 完成识别。
 
+**先访问[水表识别官网 watermeterai.com](https://watermeterai.com/zh-cn)体验识别。在官网[免费注册](https://watermeterai.com/zh-cn/login?flow=register)并登录，即可[免费创建API Key](https://watermeterai.com/zh-cn/api-keys)，接入本工具。普通免费账号每天可识别20次，官网与所有API工具共用同一账号额度，特殊账号按实际额度执行。** 接入步骤见[中文API文档](https://watermeterai.com/zh-cn/api-docs)。
+
 **当前状态：可运行的本机原型。** 已实现图片导入、API提交与轮询、离线演示、人工核对、暂停恢复及CSV导出。自动测试使用本机模拟API；该客户端的生产真实识别尚未核验，尚未提供桌面安装包。
 
 ## 启动

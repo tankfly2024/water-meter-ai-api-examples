@@ -4,6 +4,8 @@
 
 Use an existing Home Assistant camera to read a water meter through the WaterMeter AI cloud API. Display a cumulative reading, review questionable changes, and prepare a water sensor for the Energy dashboard. Supported service capabilities include pointer and mechanical digit meters; LED recognition is not promised.
 
+**Visit [watermeterai.com](https://watermeterai.com/) to try water meter recognition, [register for free](https://watermeterai.com/en/login?flow=register), and [create an API key for free](https://watermeterai.com/en/api-keys).** Ordinary free accounts include **20 recognitions per day**, shared across the website, this integration, and other API clients. Use your website account's key here; actual account-specific quotas apply. Start with the [API documentation](https://watermeterai.com/en/api-docs).
+
 **Status: 0.1.0 local prototype, for testing.** State-engine and loopback HTTP tests are available. Installation in a real Home Assistant instance, camera capture, configuration UI, statistics, and production API recognition still need end-to-end verification. This is a manually installed custom integration, with no claim of official Home Assistant inclusion or HACS distribution. The adapter references Home Assistant 2026.11.2 APIs; other releases are not certified.
 
 ## What it does

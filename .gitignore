@@ -20,3 +20,4 @@ sample-images/*
 !sample-images/README.md
 outputs/
 results/
+dist/

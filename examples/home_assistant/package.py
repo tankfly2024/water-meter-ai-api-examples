@@ -18,15 +18,15 @@ def build(output):
     component = ROOT / "custom_components" / "watermeter_ai"
     members = {}
     for name in FILES:
-        content = (component / name).read_bytes()
+        content = (component / name).read_bytes().replace(b"\r\n", b"\n")
         if name.endswith(".py"):
             ast.parse(content.decode("utf-8"), filename=name)
         else:
             json.loads(content)
         members["custom_components/watermeter_ai/" + name] = content
     for name in ["README.md", "README.zh-CN.md", "examples/automation.yaml"]:
-        members[name] = (ROOT / name).read_bytes()
-    members["LICENSE"] = (ROOT.parents[1] / "LICENSE").read_bytes()
+        members[name] = (ROOT / name).read_bytes().replace(b"\r\n", b"\n")
+    members["LICENSE"] = (ROOT.parents[1] / "LICENSE").read_bytes().replace(b"\r\n", b"\n")
     output = Path(output).resolve()
     output.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(output, "w", compression=zipfile.ZIP_DEFLATED) as archive:

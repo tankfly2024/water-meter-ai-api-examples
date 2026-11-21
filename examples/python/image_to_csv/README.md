@@ -4,6 +4,8 @@
 
 A client project for turning water meter images into reviewable readings and CSV files with the WaterMeter AI public API.
 
+**Get started at [watermeterai.com](https://watermeterai.com/): try recognition on the website, [register for free](https://watermeterai.com/en/login?flow=register), then [create an API key for free](https://watermeterai.com/en/api-keys).** Ordinary free accounts receive **20 recognitions per day**, shared by the website and all API tools. Keep the same account when moving from the website to this client; actual account-specific quotas apply. Read the [API guide](https://watermeterai.com/en/api-docs).
+
 **Status: runnable local prototype.** Image import, task submission and polling, offline demo, manual review, pause/resume, and CSV export are implemented. Automated workflow checks use a local mock API; production recognition has not yet been verified for this client. A packaged desktop installer is not provided.
 
 ## Start Locally

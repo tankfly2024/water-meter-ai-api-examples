@@ -4,6 +4,8 @@
 
 利用已经接入 Home Assistant 的摄像头拍摄水表，调用水表云端识别 API，把累计读数显示成传感器，并为用水统计提供数据。当前服务支持指针表、机械数字表；不承诺 LED 表识别。
 
+**欢迎先到[水表识别官网 watermeterai.com](https://watermeterai.com/zh-cn)体验识别。在官网[免费注册](https://watermeterai.com/zh-cn/login?flow=register)并登录，即可[免费创建API Key](https://watermeterai.com/zh-cn/api-keys)，用于连接本插件。普通免费账号每天可识别20次，与官网及所有API工具共用额度，特殊账号按实际额度执行。** 接入方式见[中文API文档](https://watermeterai.com/zh-cn/api-docs)。
+
 **当前为0.1.0本地测试原型。** 已提供读数状态机和本机HTTP模拟服务测试；真实 Home Assistant 安装、配置界面、摄像头取图、统计面板和生产API识别尚待端到端实测。本项目是手工安装的自定义集成，不宣称已进入官方集成或HACS。适配代码参照 Home Assistant 2026.11.2，未认证其它版本兼容性。
 
 ## 功能
