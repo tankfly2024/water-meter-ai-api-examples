@@ -13,7 +13,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 REPOSITORY = "tankfly2024/water-meter-ai-api-examples"
-TAG = "preview-20261121"
+TAG = "preview-20261121-r1"
 IMAGE_FILES = [
     "README.md", "README.zh-CN.md", ".gitignore", "run.py", "docs/使用说明.md",
     "src/app.js", "src/client.py", "src/index.html", "src/style.css", "tests/test_client.py",
