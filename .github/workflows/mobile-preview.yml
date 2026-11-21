@@ -48,7 +48,7 @@ jobs:
           if-no-files-found: error
 
   ios:
-    runs-on: macos-15
+    runs-on: macos-26
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
@@ -60,6 +60,8 @@ jobs:
         run: python3 examples/flutter/watermeter_mobile/tool/bootstrap.py --target "$RUNNER_TEMP/watermeter-mobile"
       - name: Analyze and run mock API and widget tests
         run: python3 examples/flutter/watermeter_mobile/tool/check.py --project "$RUNNER_TEMP/watermeter-mobile"
+      - name: Compile iOS simulator app
+        run: python3 examples/flutter/watermeter_mobile/tool/check.py --project "$RUNNER_TEMP/watermeter-mobile" --run flutter build ios --simulator --debug
       - name: Run mock workflow on an iPhone simulator
         run: |
           mkdir -p "$RUNNER_TEMP/mobile-artifacts/screenshots"

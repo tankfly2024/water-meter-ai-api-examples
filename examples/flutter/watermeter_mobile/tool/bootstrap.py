@@ -15,7 +15,7 @@ def bootstrap(target):
         raise SystemExit("Choose a new build directory outside the source recipe")
     subprocess.run(["flutter", "create", "--no-pub", "--platforms=android,ios", "--org", "com.watermeterai",
                     "--project-name", "watermeter_mobile", "--empty", str(target)], check=True)
-    for name in ["lib", "test", "integration_test", "test_driver"]:
+    for name in ["lib", "test", "integration_test"]:
         shutil.copytree(SOURCE / name, target / name, dirs_exist_ok=True)
     for name in ["pubspec.yaml", "analysis_options.yaml", "README.md", "README.zh-CN.md"]:
         shutil.copy2(SOURCE / name, target / name)

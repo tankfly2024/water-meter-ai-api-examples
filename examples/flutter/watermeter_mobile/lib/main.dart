@@ -132,7 +132,8 @@ class _WaterMeterAppState extends State<WaterMeterApp> with WidgetsBindingObserv
     theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff087f8c)),
       scaffoldBackgroundColor: const Color(0xffedf4f5),
       inputDecorationTheme: const InputDecorationTheme(border: OutlineInputBorder())),
-    home: AnimatedBuilder(animation: c, builder: (context, _) => Scaffold(
+    home: AnimatedBuilder(animation: c, builder: (context, _) => RepaintBoundary(
+      key: const Key('app-surface'), child: Scaffold(
       appBar: AppBar(title: Text(w['title']), actions: [TextButton(key: const Key('language'),
         onPressed: () => setState(() => chinese = !chinese), child: Text(chinese ? 'English' : '中文'))]),
       body: SafeArea(child: Align(alignment: Alignment.topCenter, child: ConstrainedBox(
@@ -202,7 +203,7 @@ class _WaterMeterAppState extends State<WaterMeterApp> with WidgetsBindingObserv
           ])),
         ]),
       ))),
-    )),
+    ))),
   );
 }
 
