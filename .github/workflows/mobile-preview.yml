@@ -1,0 +1,102 @@
+name: Mobile Android and iOS preview
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'examples/flutter/watermeter_mobile/**'
+      - '.github/workflows/mobile-preview.yml'
+
+concurrency:
+  group: mobile-preview
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+      - name: Install Flutter only on this cloud runner
+        run: python3 examples/flutter/watermeter_mobile/tool/install_flutter.py
+      - name: Prepare native project
+        run: |
+          echo "JAVA_HOME=$JAVA_HOME_17_X64" >> "$GITHUB_ENV"
+          python3 examples/flutter/watermeter_mobile/tool/bootstrap.py --target "$RUNNER_TEMP/watermeter-mobile"
+      - name: Analyze and run mock API and widget tests
+        working-directory: ${{ runner.temp }}/watermeter-mobile
+        run: |
+          flutter analyze
+          flutter test --reporter expanded
+      - name: Build Android testing APK
+        working-directory: ${{ runner.temp }}/watermeter-mobile
+        run: |
+          flutter build apk --debug
+          mkdir -p "$RUNNER_TEMP/mobile-artifacts"
+          cp build/app/outputs/flutter-apk/app-debug.apk "$RUNNER_TEMP/mobile-artifacts/watermeter-mobile-android-debug.apk"
+          flutter --version --machine > "$RUNNER_TEMP/mobile-artifacts/flutter-build.json"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: mobile-android
+          path: ${{ runner.temp }}/mobile-artifacts/
+          if-no-files-found: error
+
+  ios:
+    runs-on: macos-15
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+      - name: Install Flutter only on this cloud Mac
+        run: python3 examples/flutter/watermeter_mobile/tool/install_flutter.py
+      - name: Prepare native project
+        run: python3 examples/flutter/watermeter_mobile/tool/bootstrap.py --target "$RUNNER_TEMP/watermeter-mobile"
+      - name: Analyze and run mock API and widget tests
+        working-directory: ${{ runner.temp }}/watermeter-mobile
+        run: |
+          flutter analyze
+          flutter test --reporter expanded
+      - name: Run mock workflow on an iPhone simulator
+        run: |
+          mkdir -p "$RUNNER_TEMP/mobile-artifacts/screenshots"
+          python3 examples/flutter/watermeter_mobile/tool/run_simulator.py --project "$RUNNER_TEMP/watermeter-mobile"
+        env:
+          WM_SCREENSHOT_DIR: ${{ runner.temp }}/mobile-artifacts/screenshots
+      - name: Build unsigned iOS simulator app and full source bundle
+        working-directory: ${{ runner.temp }}/watermeter-mobile
+        run: |
+          flutter build ios --simulator --debug
+          python3 "$GITHUB_WORKSPACE/examples/flutter/watermeter_mobile/tool/publish.py" --build-only --project "$RUNNER_TEMP/watermeter-mobile" --output "$RUNNER_TEMP/mobile-artifacts"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: mobile-ios
+          path: ${{ runner.temp }}/mobile-artifacts/
+          if-no-files-found: error
+
+  publish:
+    needs: [android, ios]
+    if: contains(github.event.head_commit.message, '[mobile-preview]')
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: write
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          pattern: mobile-*
+          path: ${{ runner.temp }}/mobile-artifacts
+          merge-multiple: true
+      - name: Publish both verified build outputs as a testing prerelease
+        run: python3 examples/flutter/watermeter_mobile/tool/publish.py --output "$RUNNER_TEMP/mobile-artifacts"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

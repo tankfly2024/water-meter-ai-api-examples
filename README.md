@@ -30,6 +30,10 @@ The [WaterMeter Image-to-CSV client](examples/python/image_to_csv/README.md) pro
 
 For a camera-to-sensor workflow, try the [WaterMeter AI Home Assistant custom integration](examples/home_assistant/README.md). Its local prototype supports manual reads, cumulative values, review controls, and quota reporting. Real Home Assistant installation and production API verification are pending; manual installation instructions and an optional automation example are included.
 
+## Mobile App Preview
+
+The [WaterMeter Mobile project](examples/flutter/watermeter_mobile/README.md) adds a shared Android/iOS photo-and-review interface with prominent website and free-API-key links. The [cloud build workflow](.github/workflows/mobile-preview.yml) checks the source, builds a testing APK and an unsigned iPhone simulator app, and runs a mocked simulator workflow. Physical-device and production API validation remain separate from these build checks. Download successful **WaterMeter Mobile** previews from [Releases](https://github.com/tankfly2024/water-meter-ai-api-examples/releases).
+
 ## Quick Start
 
 1. Sign in at https://watermeterai.com/
