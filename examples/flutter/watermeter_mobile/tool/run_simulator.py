@@ -15,7 +15,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--project", required=True, type=Path)
     project = parser.parse_args().project.resolve()
-    devices = json.loads(subprocess.check_output(["xcrun", "simctl", "list", "devices", "available", "-j"]))
+    devices = json.loads(subprocess.check_output(["xcrun", "simctl", "list", "devices", "available", "-j"], timeout=60))
     candidates = [dict(device, runtime=runtime) for runtime, group in devices["devices"].items() if "iOS" in runtime
                   for device in group if device.get("isAvailable") and "iPhone" in device["name"]]
     if not candidates:
@@ -41,7 +41,8 @@ if __name__ == "__main__":
     with (project / "build/ios/iphonesimulator/Runner.app/Info.plist").open("rb") as handle:
         identifier = plistlib.load(handle)["CFBundleIdentifier"]
     subprocess.run(["xcrun", "simctl", "install", device["udid"], str(app)], check=True, timeout=120)
-    container = Path(subprocess.check_output(["xcrun", "simctl", "get_app_container", device["udid"], identifier, "data"], text=True).strip())
+    print("Test application installed", flush=True)
+    container = Path(subprocess.check_output(["xcrun", "simctl", "get_app_container", device["udid"], identifier, "data"], text=True, timeout=60).strip())
     log_path = project / "build/simulator-fixture-console.txt"
     receipt = None
     with log_path.open("w") as console:
@@ -61,13 +62,23 @@ if __name__ == "__main__":
                     break
                 time.sleep(2)
         finally:
-            subprocess.run(["xcrun", "simctl", "terminate", device["udid"], identifier],
-                           stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=30)
+            # Preserve the actual assertion/startup diagnostics even if the
+            # hosted simulator's cleanup command becomes unresponsive.
+            print(log_path.read_text(errors="replace")[-10000:], flush=True)
+            try:
+                subprocess.run(["xcrun", "simctl", "terminate", device["udid"], identifier],
+                               stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=15)
+            except subprocess.TimeoutExpired:
+                print("Simulator cleanup timed out; assertion receipt remains authoritative", flush=True)
             try:
                 process.wait(timeout=10)
             except subprocess.TimeoutExpired:
                 os.killpg(process.pid, signal.SIGTERM)
-                process.wait(timeout=10)
+                try:
+                    process.wait(timeout=10)
+                except subprocess.TimeoutExpired:
+                    os.killpg(process.pid, signal.SIGKILL)
+                    process.wait(timeout=10)
     if receipt is None or receipt.get("passed") is not True or len(receipt.get("tests", [])) != 1:
         print(log_path.read_text(errors="replace")[-12000:], flush=True)
         if receipt is not None:
