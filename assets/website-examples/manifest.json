@@ -1,0 +1,49 @@
+{
+  "selected_on": "2026-11-22",
+  "purpose": "Public website photo examples with manually annotated reference readings",
+  "fresh_inference_run": false,
+  "images_modified": false,
+  "annotation_method": "Reference readings rendered beside unchanged photographs in the README HTML layout",
+  "samples": [
+    {
+      "file": "pointer-4373.jpg",
+      "label_en": "Multi-dial pointer meter",
+      "label_zh_cn": "多指针水表",
+      "reference_reading": "4373",
+      "unit": "m³",
+      "reading_scope": "whole_cubic_metres",
+      "source_url": "https://watermeterai.com/examples/watermeter/v3/4373.jpg",
+      "sha256": "77d81bd4f78ca962427679f33d69dabf4311a5c004396683308e9316412eb676"
+    },
+    {
+      "file": "combined-00840.jpg",
+      "label_en": "Digit register with sub-dials",
+      "label_zh_cn": "字轮与指针组合表",
+      "reference_reading": "00840",
+      "unit": "m³",
+      "reading_scope": "whole_cubic_metres",
+      "source_url": "https://watermeterai.com/examples/watermeter/v3/00840.jpg",
+      "sha256": "30935f4b4eb407eb4dfe52be213d48d783f6f20a7363094f538e325d1482fc5a"
+    },
+    {
+      "file": "light-register-00031-744.jpg",
+      "label_en": "Light register digits",
+      "label_zh_cn": "浅色字轮水表",
+      "reference_reading": "00031.744",
+      "unit": "m³",
+      "reading_scope": "register_to_three_decimal_places",
+      "source_url": "https://watermeterai.com/examples/watermeter/v3/id_001_value_00031_744.jpg",
+      "sha256": "0e193c88ed266381d754d5ca6712c464befa2fae3b6fd3c739e474e0f9bd2180"
+    },
+    {
+      "file": "mechanical-register-00153-668.jpg",
+      "label_en": "Black and red register digits",
+      "label_zh_cn": "黑红字轮水表",
+      "reference_reading": "00153.668",
+      "unit": "m³",
+      "reading_scope": "register_to_three_decimal_places",
+      "source_url": "https://watermeterai.com/examples/watermeter/v3/id_004_value_00153_668.jpg",
+      "sha256": "b8274e7ae17f443515ae6a8086690a7f8cc3c81cde7c007c8e5683de71a858ea"
+    }
+  ]
+}

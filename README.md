@@ -16,6 +16,39 @@ The clients below are **testing previews**. [Download Image-to-CSV and Home Assi
 
 Use this repository to test image upload, task polling, quota checks, and public AI status checks from your own application.
 
+## Water Meter Photo Examples
+
+These photographs are already shown on [watermeterai.com](https://watermeterai.com/en). They illustrate pointer meters and different mechanical digit registers. **The readings below are manually annotated references; no new AI inference was run to create this showcase.** Click a photo to view the original.
+
+<table>
+  <tr>
+    <td align="center" valign="top" width="50%">
+      <p><strong>1. Multi-dial pointer meter</strong></p>
+      <a href="assets/website-examples/pointer-4373.jpg"><img src="assets/website-examples/pointer-4373.jpg" width="320" alt="Original pointer water meter photo; manually annotated reference reading 4373 cubic metres"></a>
+      <p><strong>Reference reading: <code>4373 m³</code></strong><br>Whole cubic metres</p>
+    </td>
+    <td align="center" valign="top" width="50%">
+      <p><strong>2. Digit register with sub-dials</strong></p>
+      <a href="assets/website-examples/combined-00840.jpg"><img src="assets/website-examples/combined-00840.jpg" width="320" alt="Original water meter with a digit register and sub-dials; reference register reading 00840 cubic metres"></a>
+      <p><strong>Reference reading: <code>00840 m³</code></strong><br>Whole cubic metres</p>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="50%">
+      <p><strong>3. Light register digits</strong></p>
+      <a href="assets/website-examples/light-register-00031-744.jpg"><img src="assets/website-examples/light-register-00031-744.jpg" width="320" alt="Original water meter with light register digits; manually annotated reference reading 00031.744 cubic metres"></a>
+      <p><strong>Reference reading: <code>00031.744 m³</code></strong><br>Register reading to 3 decimal places</p>
+    </td>
+    <td align="center" valign="top" width="50%">
+      <p><strong>4. Black and red register digits</strong></p>
+      <a href="assets/website-examples/mechanical-register-00153-668.jpg"><img src="assets/website-examples/mechanical-register-00153-668.jpg" width="180" alt="Original water meter with black and red register digits; manually annotated reference reading 00153.668 cubic metres"></a>
+      <p><strong>Reference reading: <code>00153.668 m³</code></strong><br>Register reading to 3 decimal places</p>
+    </td>
+  </tr>
+</table>
+
+The original photos are unchanged. Readings retain the precision and leading zeros used in the website examples; fractional sub-dials are not expanded in the whole-metre examples. [Try your own photo on our website](https://watermeterai.com/en), or [get an API key for free](https://watermeterai.com/en/api-keys).
+
 ## Repository Purpose
 
 This public GitHub repository is for Water Meter API examples and website discovery. It is designed to help developers find the API on GitHub, run a small example, and continue on the website.

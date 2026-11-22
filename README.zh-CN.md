@@ -16,6 +16,39 @@
 
 你可以通过本仓库，在自己的应用中验证图片上传、任务查询、额度查询及公开 AI 服务状态查询。
 
+## 水表照片与读数示例
+
+以下照片已在[水表识别官网 watermeterai.com](https://watermeterai.com/zh-cn)展示，包含指针表及不同形式的机械字轮表。**下方读数为人工标注的参考值，本次制作展示未运行新的 AI 推理。** 点击照片可查看原图。
+
+<table>
+  <tr>
+    <td align="center" valign="top" width="50%">
+      <p><strong>1. 多指针水表</strong></p>
+      <a href="assets/website-examples/pointer-4373.jpg"><img src="assets/website-examples/pointer-4373.jpg" width="320" alt="官网指针水表原图，人工标注参考读数为4373立方米"></a>
+      <p><strong>参考读数：<code>4373 m³</code></strong><br>按整数立方米展示</p>
+    </td>
+    <td align="center" valign="top" width="50%">
+      <p><strong>2. 字轮与指针组合表</strong></p>
+      <a href="assets/website-examples/combined-00840.jpg"><img src="assets/website-examples/combined-00840.jpg" width="320" alt="官网字轮与指针组合水表原图，字轮参考读数为00840立方米"></a>
+      <p><strong>参考读数：<code>00840 m³</code></strong><br>按整数立方米展示</p>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="50%">
+      <p><strong>3. 浅色字轮水表</strong></p>
+      <a href="assets/website-examples/light-register-00031-744.jpg"><img src="assets/website-examples/light-register-00031-744.jpg" width="320" alt="官网浅色字轮水表原图，人工标注参考读数为00031.744立方米"></a>
+      <p><strong>参考读数：<code>00031.744 m³</code></strong><br>字轮读数保留三位小数</p>
+    </td>
+    <td align="center" valign="top" width="50%">
+      <p><strong>4. 黑红字轮水表</strong></p>
+      <a href="assets/website-examples/mechanical-register-00153-668.jpg"><img src="assets/website-examples/mechanical-register-00153-668.jpg" width="180" alt="官网黑红字轮水表原图，人工标注参考读数为00153.668立方米"></a>
+      <p><strong>参考读数：<code>00153.668 m³</code></strong><br>字轮读数保留三位小数</p>
+    </td>
+  </tr>
+</table>
+
+照片本身保持原样。读数沿用官网示例的展示精度并保留前导零；整数示例不展开小数分度指针。你可以[前往官网上传自己的照片体验识别](https://watermeterai.com/zh-cn)，或[免费获取 API Key](https://watermeterai.com/zh-cn/api-keys)接入应用。
+
 ## 仓库用途
 
 本仓库提供水表 API 示例与官网入口，帮助开发者在 GitHub 上了解服务、运行示例，并继续到官网体验和接入。
