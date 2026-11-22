@@ -1,12 +1,12 @@
 # WaterMeter AI — Water Meter Recognition API & Tools
 
+**English** | [简体中文](README.zh-CN.md)
+
 Official example clients for the Water Meter Recognition API using curl, Python, Node.js, Java, .NET, Go, PHP, and PowerShell.
 
-**Start on our website: [watermeterai.com](https://watermeterai.com/).** Try water meter recognition in your browser, then use the same account to connect your application, Image-to-CSV tool, or Home Assistant installation.
+**Start on our website: [watermeterai.com](https://watermeterai.com/).** Try water meter recognition in your browser, then use the same account to connect your application, Image-to-CSV tool, Home Assistant installation, or mobile client.
 
 **Get an API key for free on the website.** [Register](https://watermeterai.com/en/login?flow=register), sign in, and [create your free API key](https://watermeterai.com/en/api-keys). Ordinary free accounts include **20 water meter recognitions per day**, shared across the website and API clients. No unused calls roll over; paid, custom, and cooperation policies follow the account's actual quota. See the [API documentation](https://watermeterai.com/en/api-docs) for integration details.
-
-**中文：欢迎访问[水表识别官网 watermeterai.com](https://watermeterai.com/zh-cn)。在官网[免费注册](https://watermeterai.com/zh-cn/login?flow=register)并登录，即可[免费创建API Key](https://watermeterai.com/zh-cn/api-keys)。普通免费账号每天可识别20次，官网与所有API工具共用额度，未用完不累积；特殊账号按实际额度执行。**
 
 The clients below are **testing previews**. [Download Image-to-CSV and Home Assistant packages](https://github.com/tankfly2024/water-meter-ai-api-examples/releases/tag/preview-20261121-r1), or see the mobile app section for Android/iOS builds. Real Home Assistant, physical phones, and production API end-to-end verification are pending.
 
